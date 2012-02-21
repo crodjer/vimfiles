@@ -1,6 +1,11 @@
 "" Basic behaviour
 
 set nocompatible        "choose no compatibility with legacy vi
+
+"activate pathogen
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
 set encoding=utf-8
 set noswapfile          "disable swapfiles
 set hidden              "hide buffers when not displayed
@@ -36,9 +41,9 @@ filetyp plugin on
 
 "" Handling whitespaces
 
-set expandtab       "use spaces for tabs and set it to 4 spaces
+set expandtab                   "use spaces for tabs and set it to 4 spaces
 set tabstop=4 shiftwidth=4      "4 spaces is a tab
-set nowrap          "dont wrap lines
+set nowrap                      "dont wrap lines
 set backspace=indent,eol,start  "backspace through everything in insert mode
 
 "" Searching
