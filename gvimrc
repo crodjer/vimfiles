@@ -5,8 +5,14 @@
 "i - use vim icon
 set guioptions=aci
 
-"" Looks
+"" Behaviour
 
 set anti            "turn on antialiasing
 "always show tabs
 set showtabline=2 
+
+"function to save  session on unfocus
+function! SaveSessionOnUnfocus()
+    SaveSession
+endfunction
+au FocusLost * call SaveSessionOnUnfocus()
