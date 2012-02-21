@@ -1,16 +1,13 @@
 "" Basic vim settings
 
-"choose no compatibility with legacy vi
-set nocompatible
-"display incomplete commands
-set showcmd
+set nocompatible        "choose no compatibility with legacy vi
+set showcmd             "display incomplete commands
 set encoding=utf-8
-set noswapfile
+set noswapfile          "disable swapfiles
+set hidden              "hide buffers when not displayed
 "configure undofiles
 set undodir=~/.vim/undofiles
 set undofile
-"hide buffers when not displayed
-set hidden
 
 "" Looks
 
@@ -28,9 +25,9 @@ filetyp plugin on
 "" Handling whitespaces
 
 set expandtab       "use spaces for tabs and set it to 4 spaces
-set tabstop=4 shiftwidth=4 "4 spaces is a tab
+set tabstop=4 shiftwidth=4      "4 spaces is a tab
 set nowrap          "dont wrap lines
-set backspace=indent,eol,start "backspace through everything in insert mode
+set backspace=indent,eol,start  "backspace through everything in insert mode
 
 "" Searching
 
@@ -40,14 +37,16 @@ set ignorecase      "ignore cases while searching
 set smartcase       "consider case for search patterns with uppercase letters
 
 "" Mappings
+
 set pastetoggle=<F6> "toggle paste mode with <F6>
 "<C-l> - Clear the highlight as well as redraw
-nnoremap <C-L> :nohls<CR><C-L>    
+nnoremap <C-L> :nohls<CR><C-L>
 "don't move lines starting by `#` to first column
 inoremap # X<BS>#
 
 
 "" Auto execution commands
+
 "disable beeping and flashing
 autocmd VimEnter * set vb t_vb=""
 "spell check for text, mail, commit files
