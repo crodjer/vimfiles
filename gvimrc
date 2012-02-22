@@ -8,8 +8,6 @@ set guioptions=aci
 "" Behaviour
 
 set anti            "turn on antialiasing
-"always show tabs
-set showtabline=2 
 
 "function to save  session on unfocus
 function! SaveSessionOnUnfocus()
