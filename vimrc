@@ -39,6 +39,8 @@ set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 syntax enable
 filetype plugin on
 filetyp plugin on
+set autoindent
+set smartindent
 
 "" Handling whitespaces
 
@@ -83,3 +85,13 @@ let g:pad_dir = "~/workspace/notes/"
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 let g:syntastic_python_checker='pylint'
+
+"taglist settings
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Exit_OnlyWindow = 0
+let Tlist_WinWidth = 35
+let Tlist_Use_Right_Window=1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Display_Tag_Scope = 1
+let Tlist_Process_File_Always = 1
+let Tlist_Show_One_File = 1
