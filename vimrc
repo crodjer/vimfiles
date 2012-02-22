@@ -18,7 +18,8 @@ set undofile
 set showcmd                 "display incomplete commands
 set wildmode=list:longest   "make cmdline tab completion similar to bash
 set wildmenu                "enable C-n and C-p to scroll through matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+"stuff to ignore when tab completing
+set wildignore=*.o,*~,*.pyc,*.hi
 
 "" Looks
 
@@ -77,6 +78,7 @@ autocmd filetype markdown,mail,svn,*commit* setlocal spell
 
 "vim-pad
 let g:pad_dir = "~/workspace/notes/"
+
 "syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
