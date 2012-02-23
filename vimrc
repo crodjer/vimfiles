@@ -44,10 +44,18 @@ filetyp plugin on
 set autoindent
 set smartindent
 
+"open parameter indentation settings
+let g:pyindent_open_paren = '&sw'
+let g:pyindent_continue = '&sw'
+set cinoptions+=+1
+
 "" Handling whitespaces
 
 set expandtab                   "use spaces for tabs and set it to 4 spaces
-set tabstop=4 shiftwidth=4      "4 spaces is a tab
+"4 spaces is a tab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set nowrap                      "dont wrap lines
 set backspace=indent,eol,start  "backspace through everything in insert mode
 
