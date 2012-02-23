@@ -10,6 +10,7 @@ set encoding=utf-8
 set noswapfile          "disable swapfiles
 set hidden              "hide buffers when not displayed
 set textwidth=80        "maximum width of text that can be inserted
+set nofoldenable        "dont fold by default
 
 "undofiles configuration
 set undodir=~/.vim/undofiles
