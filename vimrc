@@ -11,6 +11,11 @@ set noswapfile          "disable swapfiles
 set hidden              "hide buffers when not displayed
 set textwidth=80        "maximum width of text that can be inserted
 set nofoldenable        "dont fold by default
+ret formatoptions-=o    "dont continue comments when pushing o/O
+
+"use w!! to save with root permissions
+cmap w!! %!sudo tee > /dev/null %
+
 
 "undofiles configuration
 set undodir=~/.vim/undofiles
@@ -43,6 +48,10 @@ filetype plugin on
 filetyp plugin on
 set autoindent
 set smartindent
+
+"reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
 
 "open parameter indentation settings
 let g:pyindent_open_paren = '&sw'
