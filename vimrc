@@ -41,6 +41,10 @@ set showmode                "show current mode down the bottom
 set list
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
+"some stuff to get the mouse going in term
+set mouse=a
+set ttymouse=xterm2
+
 "" Indentation and syntax highlighting
 
 syntax enable
