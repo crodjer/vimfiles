@@ -32,7 +32,6 @@ set wildignore=*.o,*~,*.pyc,*.hi
 
 set t_Co=256                "force 256 colours
 colorscheme xoria256-trans  "nice dark colorscheme
-set background=dark
 set colorcolumn=+1          "mark the ideal max text width
 set rnu                     "show line numbers
 set showmode                "show current mode down the bottom
