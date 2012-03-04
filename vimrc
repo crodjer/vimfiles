@@ -48,7 +48,7 @@ set ttymouse=xterm2
 
 syntax enable
 filetype plugin on
-filetyp plugin on
+filetype indent on
 set autoindent
 set smartindent
 
@@ -285,7 +285,7 @@ let g:pad_dir = "~/workspace/notes/"
 "syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
-let g:syntastic_python_checker='pylint'
+"let g:syntastic_python_checker='pylint'
 
 "taglist settings
 let Tlist_Enable_Fold_Column = 0
