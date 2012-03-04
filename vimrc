@@ -80,9 +80,18 @@ set smartcase       "consider case for search patterns with uppercase letters
 "explorer mappings
 nnoremap <F1> :BufExplorer<CR>
 nnoremap <F3> :TlistToggle<CR>
+
+"remove trailing whitespaces with <F5>
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
 set pastetoggle=<F6>            "toggle paste mode with <F6>
+
 "<C-l> - Clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
+
+"save session with  <C-m>
+nnoremap <silent> <C-M> :SaveSession<CR>
+
 "`#` should follow neighbouring indentation
 inoremap # X<BS>#
 
