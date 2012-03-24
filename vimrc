@@ -52,6 +52,8 @@ filetype indent on
 set autoindent
 set smartindent
 
+au FileType c cpp setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+
 "reselect visual block after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
@@ -97,6 +99,11 @@ nnoremap <silent> <C-M> :SaveSession<CR>
 
 "`#` should follow neighbouring indentation
 inoremap # X<BS>#
+
+"vim pad mapings
+
+nmap <leader>n :OpenPad<CR>
+nmap <leader><esc> :ListPad<CR>
 
 
 "" Auto execution commands
@@ -281,6 +288,8 @@ endfunction
 
 "vim-pad
 let g:pad_dir = "~/workspace/notes/"
+let g:pad_window_height = 15
+let g:pad_use_default_mappings = 0
 
 "syntastic
 let g:syntastic_enable_signs=1
