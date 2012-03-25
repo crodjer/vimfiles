@@ -5,6 +5,7 @@ set nocompatible        "choose no compatibility with legacy vi
 "activate pathogen
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
+call pathogen#helptags()
 
 set encoding=utf-8
 set noswapfile          "disable swapfiles
