@@ -12,7 +12,8 @@ set noswapfile          "disable swapfiles
 set hidden              "hide buffers when not displayed
 set textwidth=80        "maximum width of text that can be inserted
 set nofoldenable        "dont fold by default
-ret formatoptions-=o    "dont continue comments when pushing o/O
+set formatoptions-=t    "dislable autowrapping using textwidth
+set formatoptions+=c    "enable auto wrapping and formatting in comments
 
 "use w!! to save with root permissions
 cmap w!! %!sudo tee > /dev/null %
@@ -52,8 +53,6 @@ filetype plugin on
 filetype indent on
 set autoindent
 set smartindent
-
-au FileType c cpp setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
 "reselect visual block after indent/outdent
 vnoremap < <gv
@@ -111,8 +110,10 @@ nmap <leader><esc> :ListPad<CR>
 
 autocmd VimEnter * set vb t_vb=""   "disable beeping and flashing
 
-"spell check for text, mail, commit files
-autocmd filetype markdown,mail,svn,*commit* setlocal spell
+"some filtype based formatting and indentation
+autocmd filetype markdown,mail,svn,*commit* setlocal spell fo+=t
+autocmd filetype mail,svn,*commit* setlocal tw=70 fo+=at
+autocmd filetype html,javascript,css setlocal ts=2 sts=2 sw=2
 
 "" Status Line
 
