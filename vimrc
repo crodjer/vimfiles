@@ -112,7 +112,7 @@ autocmd VimEnter * set vb t_vb=""   "disable beeping and flashing
 
 "some filtype based formatting and indentation
 autocmd filetype markdown,mail,svn,*commit* setlocal spell fo+=t
-autocmd filetype mail,svn,*commit* setlocal tw=70 fo+=at
+autocmd filetype mail,svn,*commit* setlocal tw=70
 autocmd filetype html,javascript,css setlocal ts=2 sts=2 sw=2
 
 "" Status Line
