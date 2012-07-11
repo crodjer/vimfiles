@@ -30,6 +30,12 @@ set wildmenu                "enable C-n and C-p to scroll through matches
 "stuff to ignore when tab completing
 set wildignore=*.o,*~,*.pyc,*.hi
 
+"" Scroll
+
+set scrolloff=8         " Number of lines from vertical edge to start scrolling
+set sidescrolloff=15    " Number of cols from horizontal edge to start scrolling
+set sidescroll=1        " Number of cols to scroll at a time"
+
 "" Looks
 
 set t_Co=256                "force 256 colours
@@ -82,6 +88,15 @@ set smartcase       "consider case for search patterns with uppercase letters
 
 "" Mappings
 
+"Set comma as my leader
+let mapleader = ","
+
+"select all
+map <leader>a ggVG
+
+"open last buffer
+noremap <leader><leader> <C-^>
+
 "explorer mappings
 nnoremap <F1> :BufExplorer<CR>
 nnoremap <F3> :TlistToggle<CR>
@@ -90,6 +105,9 @@ nnoremap <F3> :TlistToggle<CR>
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 set pastetoggle=<F6>            "toggle paste mode with <F6>
+
+"disable paste mode when leaving Insert mode
+aut InsertLeave * set nopaste
 
 "<C-l> - Clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
@@ -100,11 +118,23 @@ nnoremap <silent> <C-M> :SaveSession<CR>
 "`#` should follow neighbouring indentation
 inoremap # X<BS>#
 
-"vim pad mapings
+"Use tab for auto completion
+function! SuperTab()
+    if (strpart(getline('.'),col('.')-2,1)=~'^\W\?$')
+        return "\<Tab>"
+    else
+        return "\<C-n>"
+    endif
+endfunction
+imap <Tab> <C-R>=SuperTab()<CR>
 
-nmap <leader>n :OpenPad<CR>
-nmap <leader><esc> :ListPad<CR>
+"insert blank lines without going into insert mode
+nmap t o<ESC>k
+nmap T O<ESC>j
 
+"next/previous in quickfix list
+nnoremap <C-n> :cnext<CR>
+nnoremap <C-p> :cprevious<CR>
 
 "" Auto execution commands
 
@@ -113,7 +143,7 @@ autocmd VimEnter * set vb t_vb=""   "disable beeping and flashing
 "some filtype based formatting and indentation
 autocmd filetype markdown,mail,svn,*commit* setlocal spell fo+=t
 autocmd filetype mail,svn,*commit* setlocal tw=70
-autocmd filetype html,javascript,css setlocal ts=2 sts=2 sw=2
+autocmd filetype html,ruby,eruby,css,coffee setlocal ts=2 sts=2 sw=2
 
 "" Status Line
 
@@ -288,11 +318,6 @@ endfunction
 
 "" Plugin configurations
 
-"vim-pad
-let g:pad_dir = "~/workspace/notes/"
-let g:pad_window_height = 15
-let g:pad_use_default_mappings = 0
-
 "syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
@@ -307,3 +332,33 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Display_Tag_Scope = 1
 let Tlist_Process_File_Always = 1
 let Tlist_Show_One_File = 1
+
+"ctrlp
+let ctrlp_filter_greps = "".
+    \ "egrep -iv '\\.(" .
+    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
+    \ ")$' | " .
+    \ "egrep -v '^(\\./)?(" .
+    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
+    \ ")'"
+
+let my_ctrlp_git_command = "" .
+    \ "cd %s && git ls-files | " .
+    \ ctrlp_filter_greps
+
+if has("unix")
+    let my_ctrlp_user_command = "" .
+    \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
+    \ ctrlp_filter_greps
+endif
+
+let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtSelectMove("j")':   ['<c-j>', '<c-n>'],
+    \ 'PrtSelectMove("k")':   ['<c-k>', '<c-p>'],
+    \ 'PrtHistory(-1)':       ['<down>'],
+    \ 'PrtHistory(1)':        ['<up>'],
+    \ }
+
