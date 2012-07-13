@@ -69,6 +69,10 @@ let g:pyindent_open_paren = '&sw'
 let g:pyindent_continue = '&sw'
 set cinoptions+=+1
 
+"highlight active line
+autocmd BufEnter * setlocal cursorline
+autocmd BufWinLeave * setlocal nocursorline
+
 "" Handling whitespaces
 
 set expandtab                   "use spaces for tabs and set it to 4 spaces
@@ -96,15 +100,20 @@ map <leader>a ggVG
 
 "open last buffer
 noremap <leader><leader> <C-^>
+nnoremap <leader>p  :bp<CR>
+nnoremap <leader>n  :bn<CR>
 
 "explorer mappings
 nnoremap <F1> :BufExplorer<CR>
 nnoremap <F3> :TlistToggle<CR>
 
-"remove trailing whitespaces with <F5>
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
 set pastetoggle=<F6>            "toggle paste mode with <F6>
+
+"remove trailing whitespaces with <F5>
+nnoremap <silent> <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+"restore messed up vim
+map <F8> :redraw! \| :noh \| <cr><c-w>=
 
 "disable paste mode when leaving Insert mode
 aut InsertLeave * set nopaste
@@ -132,11 +141,10 @@ imap <Tab> <C-R>=SuperTab()<CR>
 nmap t o<ESC>k
 nmap T O<ESC>j
 
-"next/previous in quickfix list
-nnoremap <C-n> :cnext<CR>
-nnoremap <C-p> :cprevious<CR>
-
 "" Auto execution commands
+
+"resize splits when window is resized
+au VimResized * exe "normal! \<c-w>="
 
 autocmd VimEnter * set vb t_vb=""   "disable beeping and flashing
 
@@ -353,7 +361,7 @@ if has("unix")
 endif
 
 let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
-let g:ctrlp_map = '<leader>p'
+let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("j")':   ['<c-j>', '<c-n>'],
@@ -361,4 +369,4 @@ let g:ctrlp_prompt_mappings = {
     \ 'PrtHistory(-1)':       ['<down>'],
     \ 'PrtHistory(1)':        ['<up>'],
     \ }
-
+map <C-b> :CtrlPBuffer<CR>
